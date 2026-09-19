@@ -10,10 +10,11 @@
 ---
 
 ## 🚀 Características Principales
-* **Gestión de Productos:** Registro, actualización y eliminación de artículos del catálogo.
-* **Control de Inventario:** Monitoreo de stock disponible en tiempo real.
-* **Módulo de Ventas:** Procesamiento de compras y cálculo de importes.
-* **Estructura Limpia:** Aplicación de buenas prácticas de código y diseño modular.
+
+- **Gestión de Productos:** Registro, actualización y consulta de inventario.
+- **Módulo de Ventas:** Procesamiento de órdenes y cálculo de montos.
+- **Diseño Orientado a Objetos:** Implementación de abstracción, encapsulamiento, herencia y polimorfismo.
+- **Manejo de Estructuras de Datos:** Organización eficiente de datos en memoria.
 
 ---
 
@@ -31,8 +32,17 @@ Para ejecutar este proyecto localmente, necesitas tener instalado:
 
 ---
 
+
 ## 🔧 Instalación y Ejecución
 
 1. **Clonar el repositorio:**
    ```bash
    git clone [https://github.com/jdenilson2000/miTienda.git](https://github.com/jdenilson2000/miTienda.git)
+
+
+## 📁 Estructura del Proyecto
+
+```text
+miTienda/
+├── src/            # Código fuente del proyecto
+└── README.md       # Documentación principal
