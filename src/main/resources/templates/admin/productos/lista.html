@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Lista de Productos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<header>
+    <h1>SHOP SCRIBBLES - Panel de Administración</h1>
+</header>
+
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2>Gestión de Inventario</h2>
+        <div>
+            <a th:href="@{/admin/productos/nuevo}" class="btn">+ Nuevo Producto</a>
+            <a th:href="@{/}" class="btn" style="background-color: #7f8c8d;">Ver Tienda</a>
+        </div>
+    </div>
+
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th>ID</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${productos}">
+            <td th:text="${p.id}">1</td>
+            <td>
+                <img th:src="@{'/images/' + ${p.imagenUrl}}" style="width: 50px; height: 50px; object-fit: cover;">
+            </td>
+            <td th:text="${p.nombre}">Nombre</td>
+            <td>S/ <span th:text="${#numbers.formatDecimal(p.precio, 1, 2)}">0.00</span></td>
+            <td th:text="${p.stock}">0</td>
+            <td>
+                <span th:text="${p.activo ? 'Activo' : 'Inactivo'}" th:style="${p.activo ? 'color:green;' : 'color:red;'}"></span>
+            </td>
+            <td>
+                <a th:href="@{'/admin/productos/editar/' + ${p.id}}" style="margin-right: 10px;">Editar</a>
+                <a th:href="@{'/admin/productos/eliminar/' + ${p.id}}" style="color: red;" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

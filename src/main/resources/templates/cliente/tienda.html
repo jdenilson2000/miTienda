@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Scribbles - Catálogo</title>
+  <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<header>
+  <h1>SHOP SCRIBBLES</h1>
+  <p>Tu tienda universitaria y de papelería favorita</p>
+</header>
+
+<div class="container">
+  <!-- Buscador de productos -->
+  <form th:action="@{/}" method="get" style="margin-bottom: 25px; display: flex; gap: 10px;">
+    <input type="text" name="buscar" th:value="${criterioBusqueda}" placeholder="Buscar producto..." style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+    <button type="submit" class="btn">Buscar</button>
+  </form>
+
+  <h2>Catálogo de Productos</h2>
+
+  <!-- Grid de Productos -->
+  <div class="productos-grid">
+    <div class="card" th:each="prod : ${productos}">
+      <!-- Si no existe la imagen específica, carga una por defecto -->
+      <img th:src="${prod.imagenUrl != null ? '/images/' + prod.imagenUrl : '/images/banner.jpg'}" th:alt="${prod.nombre}">
+      <h3 th:text="${prod.nombre}">Nombre Producto</h3>
+      <p th:text="${prod.descripcion}">Descripción del producto...</p>
+      <p><strong>Precio: S/ <span th:text="${#numbers.formatDecimal(prod.precio, 1, 2)}">0.00</span></strong></p>
+      <p>Stock disponible: <span th:text="${prod.stock}">0</span></p>
+
+      <form th:action="@{/carrito/agregar}" method="post" style="margin-top: 10px;">
+        <input type="hidden" name="id" th:value="${prod.id}">
+        <input type="number" name="cantidad" value="1" min="1" th:max="${prod.stock}" style="width: 50px; padding: 5px;">
+        <button type="submit" class="btn">Agregar al Carrito</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

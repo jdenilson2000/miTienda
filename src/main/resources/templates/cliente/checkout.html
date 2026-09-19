@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Scribbles - Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>SHOP SCRIBBLES - Datos de Envío</h1></header>
+
+<div class="container">
+    <h2>Registro de Datos para Compra</h2>
+
+    <form th:action="@{/checkout/procesar}" th:object="${cliente}" method="post" style="max-width: 500px; margin: auto;">
+        <div style="margin-bottom: 15px;">
+            <label>Nombres:</label>
+            <input type="text" th:field="*{nombre}" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Apellidos:</label>
+            <input type="text" th:field="*{apellido}" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Correo Electrónico:</label>
+            <input type="email" th:field="*{email}" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Teléfono:</label>
+            <input type="text" th:field="*{telefono}" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Dirección de Envío:</label>
+            <input type="text" th:field="*{direccion}" required style="width: 100%; padding: 8px;">
+        </div>
+
+        <h3>Total a Pagar: S/ <span th:text="${#numbers.formatDecimal(total, 1, 2)}">0.00</span></h3>
+
+        <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Finalizar Pedido</button>
+    </form>
+</div>
+</body>
+</html>

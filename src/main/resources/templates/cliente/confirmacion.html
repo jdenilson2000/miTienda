@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Scribbles - Confirmación</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header><h1>SHOP SCRIBBLES - Compra Exitosa</h1></header>
+
+<div class="container" style="text-align: center;">
+    <h2 style="color: green;">¡Gracias por tu compra!</h2>
+    <p>Tu pedido ha sido registrado con el código <strong>#<span th:text="${pedido.id}">0</span></strong>.</p>
+
+    <div style="text-align: left; max-width: 600px; margin: 20px auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px;">
+        <h3>Resumen de Pedido</h3>
+        <p><strong>Cliente:</strong> <span th:text="${pedido.cliente.nombre + ' ' + pedido.cliente.apellido}"></span></p>
+        <p><strong>Dirección:</strong> <span th:text="${pedido.cliente.direccion}"></span></p>
+
+        <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+            <tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Subtotal</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="det : ${pedido.detalles}">
+                <td th:text="${det.producto.nombre}"></td>
+                <td th:text="${det.cantidad}" style="text-align: center;"></td>
+                <td>S/ <span th:text="${#numbers.formatDecimal(det.precioUnitario, 1, 2)}"></span></td>
+                <td>S/ <span th:text="${#numbers.formatDecimal(det.subtotal, 1, 2)}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <h3 style="text-align: right; margin-top: 10px;">Total Pagado: S/ <span th:text="${#numbers.formatDecimal(pedido.total, 1, 2)}"></span></h3>
+    </div>
+
+    <a th:href="@{/}" class="btn">Volver al Catálogo</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Admin - Formulario Producto</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+
+<header>
+    <h1>SHOP SCRIBBLES - Formulario de Producto</h1>
+</header>
+
+<div class="container">
+    <h2 th:text="${producto.id == null ? 'Nuevo Producto' : 'Editar Producto'}">Producto</h2>
+
+    <form th:action="@{/admin/productos/guardar}" th:object="${producto}" method="post" enctype="multipart/form-data" style="max-width: 500px; margin: auto;">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div style="margin-bottom: 15px;">
+            <label>Nombre del Producto:</label>
+            <input type="text" th:field="*{nombre}" required style="width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Descripción:</label>
+            <textarea th:field="*{descripcion}" rows="3" style="width: 100%; padding: 8px;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Precio (S/):</label>
+            <input type="number" step="0.01" th:field="*{precio}" required style="width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Stock Disponible:</label>
+            <input type="number" th:field="*{stock}" required style="width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Imagen del Producto:</label>
+            <input type="file" name="img" accept="image/*" style="width: 100%; padding: 8px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>
+                <input type="checkbox" th:field="*{activo}"> Producto Activo
+            </label>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <a th:href="@{/admin/productos}" class="btn" style="background-color: #7f8c8d;">Cancelar</a>
+            <button type="submit" class="btn">Guardar Producto</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
